@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        table,th,td{
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    </style>
+
+    <form action="verify/" method="POST">
+        {% csrf_token %}
+        <center>
+            <table border="1">
+                {% if messages %}
+                    <tr>
+                        {% for message in messages %}
+                            {% if message.tags == 'error' %}
+                                <th colspan="2" style="color:red;">{{ message }}</th>
+                            {% endif %}
+                            {% if message.tags == 'success' %}
+                                <th colspan="2" style="color: lawngreen;">{{ message }}</th>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Name : </th>
+                    <td><input type="text" name="name" maxlength="10" required></td>
+                </tr>
+                <tr>
+                    <th>Email : </th>
+                    <td><input type="email" name="email" required></td>
+                </tr>
+                <tr>
+                    <th>Mobile No. : </th>
+                    <td><input type="text" name="mob" maxlength="10" pattern="[0-9]{10}" required></td>
+                </tr>
+                <tr>
+                    <th>
+                        <input type="submit" value="Register">
+                    </th>
+                    <th>
+                        <input type="reset" value="Reset">
+                    </th>
+                </tr>
+            </table>
+        </center>
+    </form>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        table,th,td{
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    </style>
+    <form action="/registration/create/" method="POST">
+        {% csrf_token %}
+        <center>
+            <table border="1">
+                <tr>
+                    <th>Name : </th>
+                    <td>{{ request.session.name }}</td>
+                </tr>
+                <tr>
+                    <th>Email : </th>
+                    <td>{{ request.session.email }}</td>
+                </tr>
+                <tr>
+                    <th>Mobile No. : </th>
+                    <td>{{ request.session.mob }}</td>
+                </tr>
+                <tr>
+                    <th>
+                        <input type="text" name="otp" maxlength="4" pattern="[0-9]{4}">
+                    </th>
+                    <th>
+                        <input type="submit" value="Submit">
+                    </th>
+                </tr>
+            </table>
+        </center>
+    </form>
+{% endblock %}
